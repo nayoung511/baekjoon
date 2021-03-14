@@ -12,6 +12,8 @@ def main():
 
     start_time = now[0] * 3600 + now[1] * 60 + now[2]
 
+    #goal time이 다음 날 새벽일 경우도 고려해야한다.
+    # +24Hrs = 86400seconds해준다.
     if(goal[0] < now[0]):
         goal_time = (goal[0] * 3600) + 86400 + goal[1] * 60 + goal[2]
     else:
