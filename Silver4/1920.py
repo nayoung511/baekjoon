@@ -1,14 +1,12 @@
 def Bsearch(a, target, l, h):
-    #print("hi")
     while l <= h:
-        mid = (l+ h) // 2
-        #print(a[mid], target)
+        mid = (l + h) // 2
         if a[mid] == target:
             return 1
         elif (a[mid] > target):
-            h = mid -1
+            return Bsearch(a, target, l, mid -1)
         else:
-            l = mid+1
+            return Bsearch(a, target, mid+1, h)
     return 0
 
 
@@ -16,16 +14,14 @@ def main():
     n = int(input())
     inp = list(map(int, input().split()))
     inp.sort()
-    
-    lst = [0] * n
 
     m = int(input())
     out = list(map(int, input().split()))
-    
-    print("-------------------------------------")
-    for i in range (n):
-        a = Bsearch(out, inp[i], 0, len(out)-1)
+
+    for i in range (m):
+        a = Bsearch(inp, out[i], 0, len(inp)-1)
         print(a)
+
 
 
 main()
