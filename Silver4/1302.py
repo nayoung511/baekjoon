@@ -14,8 +14,9 @@ def main():
     b = a.most_common()
     print(b, b[0][1])
     c = a.most_common(b[0][1])
-    print(a.most_common(1))
-    print(c)
+    i = b[0][1]
+    print(a.most_common(i), c)
+    #print(c)
 
 
     if len(c) > 1:
