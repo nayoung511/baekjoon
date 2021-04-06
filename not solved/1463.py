@@ -10,14 +10,23 @@ sys.setrecursionlimit(10**6)
 645  11  12
 963  10  11
 """
+a = [] * (10**6) + 1
 
-def main():
-    c = int(input())
-    count = 0
-    dp = [[2e9]*3]*(c+1)
-    dp[1][0] = dp[1][1] = dp[1][2] = 0
+def dp(n):
+    if n % 3 == 0: n = n // 3
+    if n % 2 == 0: n = n // 2
 
-    for i in range (2, c+1):
-        if i % 3 == 0:
-            
-main()
+    if n == 1: return 1
+    if n == 2: return 1
+    if n == 3: return 1
+    
+    else:
+        n = n - 1
+
+    return 
+
+    
+    
+
+
+n = int(input())
