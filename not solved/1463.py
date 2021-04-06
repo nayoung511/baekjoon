@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(10**6)
+
 """
 입력 정답 출력
 321   9  10
