@@ -1,6 +1,3 @@
-import sys
-sys.setrecursionlimit(10**6)
-
 """
 입력 정답 출력
 321   9  10
@@ -10,23 +7,16 @@ sys.setrecursionlimit(10**6)
 645  11  12
 963  10  11
 """
-a = [] * (10**6) + 1
-
-def dp(n):
-    if n % 3 == 0: n = n // 3
-    if n % 2 == 0: n = n // 2
-
-    if n == 1: return 1
-    if n == 2: return 1
-    if n == 3: return 1
-    
-    else:
-        n = n - 1
-
-    return 
-
-    
-    
-
 
 n = int(input())
+x = [0] * (10 ** 6 + 1)
+x[1] = 0
+x[2] = 1
+x[3] = 1
+for i in range (2, n+1):
+    x[i] = x[i-1] + 1
+    if i % 3 == 0:
+        x[i] = min(x[i//3]+1, x[i-1]+1, x[i])
+    if i % 2 == 0:
+        x[i] = min(x[i//2]+1, x[i-1]+1, x[i])
+print(x[n])
