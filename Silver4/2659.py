@@ -14,3 +14,6 @@ n = sipja(n)
 count = 0
 for i in range (1111, n):
     if sipja(i) == n:
+        count+=1
+
+print(count)
