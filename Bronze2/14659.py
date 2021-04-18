@@ -1,6 +1,3 @@
-"""
-자신보다 낮은 봉우리에 서 있는 적만 처치할 수 있다
-"""
 from sys import stdin
 
 n = int(input())
