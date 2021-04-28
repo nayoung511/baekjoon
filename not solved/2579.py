@@ -2,6 +2,7 @@ def main():
     n = int(input())
     s = [0] * (n+1)
     s[0] = 0
+    
     for i in range (n):
         s[i] = (int(input()))
     sum = s[n-1]
