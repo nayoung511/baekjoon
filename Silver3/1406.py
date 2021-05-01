@@ -1,26 +1,29 @@
-s = input()
+from sys import stdin
 
-s = list(s)
+stack1 = list(stdin.readline().rstrip('\n'))
+stack2 = []
+
 num = int(input())
 
-idx = len(s)
-for i in range (num):
-    inst = input()
-    inst = list(inst)
+for _ in range(num):
+    inst = stdin.readline().rstrip('\n')
 
     if inst[0] == 'L':
-        if idx > 0:
-            idx = idx - 1
+        if stack1:
+            stack2.append(stack1.pop())
 
     if inst[0] == 'D':
-        if idx < len(s) - 1:
-            idx = idx + 1
+        if stack2:
+            stack1.append(stack2.pop())
 
     if inst[0] == 'B':
-        if idx > 0:
-            del s[idx-1]
-
+        if stack1:
+            stack1.pop()
+       
     if inst[0] == 'P':
-        s.insert(idx, inst[-1])
+        stack1.append(inst[-1])
+
+stack2.reverse()
+s = ''.join(map(str, (stack1 + stack2)))
 
 print(s)
