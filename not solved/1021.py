@@ -17,7 +17,15 @@ while(count != m):
     if val[i] == a:
         i = i + 1
         count += 1
-    print(q)
+
+    else:
+        if (abs(val[i] - a) > abs(len(q) - val[i])):
+            q.rotate(-(abs(val[i]-a) + 1))
+            
+        else:
+            q.rotate(len(q) - val[i] + 1)
+        
+        print(q)
 
 print(count)
 
