@@ -1,48 +1,50 @@
 from collections import deque
-
-q = deque([])
+from sys import stdin
 n = int(input())
 a = []
+q = deque()
 sign = []
-out = []
+val = []
 
-m = 1
 for i in range (n):
-    c = int(input())
-    a.append(c)
+    inp = int(stdin.readline())
+    a.append(inp)
 
-count = 0
+start = 1
 idx = 0
-while count < n:
-    if m < a[idx]:
-        for i in range (a[idx] - m + 1):
-            q.append(m)
-            sign.append('+')
-            m = m + 1
+while len(sign) != len(a):
+    if start < a[idx]:
+        #차이만큼 push
+        for _ in range (a[idx] - start+1):
+            q.append(start)
+            val.append("+")
+            
+            if start == a[idx]:
+                sign.append(q.pop())
+                val.append("-")
+                
+            start = start + 1
 
-            print(q)
+    if start == a[idx] or len(q) == 0:
+        q.append(start)
+        val.append("+")
+        start = start + 1
 
-        q.append(m)
-        sign.append('+')
-
-        b = q.pop()
-        out.append(b)
-        sign.append('-')
-        count = count + 1
+        sign.append(q.pop())
+        val.append("-")
 
     else:
-        for i in range (m - a[idx]):
-            b = q.pop()
-            out.append(b)
-            sign.append('-')
-            count = count + 1
+        for _ in range (start - a[idx]-1):
+            sign.append(q.pop())
+            val.append("-")
 
+            if len(q) == 0:
+                break
     idx = idx + 1
 
-
-for item in sign:
-    print(item)
-        
-
-
-
+if sign != a:
+    print("NO")
+else:
+    for i in val:
+        print(i)
+    
