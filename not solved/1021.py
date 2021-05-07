@@ -13,9 +13,10 @@ count = 0
 i = 0
 
 while(count != m):
-    a = q.pop()
+    a = q.popleft()
     if val[i] == a:
         i = i + 1
+        count += 1
     print(q)
 
 print(count)
