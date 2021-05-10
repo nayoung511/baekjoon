@@ -8,26 +8,34 @@ val = list(map(int, input().split()))
 
 q = deque(i for i in range (1, n+1))
 
+print(q)
 idx = 1
 count = 0
 i = 0
+rotate = 0
 
-while(count != m):
-    a = q.popleft()
-    if val[i] == a:
+while(count != m and rotate < 15):
+    a = q[0]   #most front element in the queue
+    print("front", a, "val", val[i])
+    if val[i] == a: #if a is same as target,
+        q.popleft()
         i = i + 1
         count += 1
-
+#음수 = 왼쪽 
+#양수 = 오른쪽 
     else:
-        if (abs(val[i] - a) > abs(len(q) - val[i])):
-            q.rotate(-(abs(val[i]-a) + 1))
+        print(val[i] - a, len(q)-val[i])
+        if (abs(val[i] - a) < abs(len(q)-val[i])):
+            q.rotate(-abs(val[i]-a))
+            rotate += abs(val[i]-a)
             
         else:
-            q.rotate(len(q) - val[i] + 1)
+            q.rotate(len(q)-val[i] + 1)
+            rotate += len(q) - val[i] + 1
         
-        print(q)
-
-print(count)
+    count += 0.2
+    print(q, rotate)
+print(rotate)
 
 
 """
@@ -53,7 +61,7 @@ print(count)
 
 5 6 7 8 10 1 3 4      / 8
 
-
-
-
 """
+
+
+
