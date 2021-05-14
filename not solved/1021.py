@@ -21,6 +21,7 @@ while(count != m and rotate < 15):
         q.popleft()
         i = i + 1
         count += 1
+<<<<<<< HEAD
 #음수 = 왼쪽 
 #양수 = 오른쪽 
     else:
@@ -36,6 +37,19 @@ while(count != m and rotate < 15):
     count += 0.2
     print(q, rotate)
 print(rotate)
+=======
+
+    else:
+        if (abs(val[i] - a) > abs(len(q) - val[i])):
+            q.rotate(-(abs(val[i]-a) + 1))
+            
+        else:
+            q.rotate(len(q) - val[i] + 1)
+        
+        print(q)
+
+print(count)
+>>>>>>> 9f631d46f6ceda04bff2bcbf907145f1992fd23e
 
 
 """
