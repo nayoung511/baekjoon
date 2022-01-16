@@ -1,47 +1,61 @@
-def pSort(a, target):
-    count = 0
-    for i in range (a.qsize()):
-        b = a.get()
-        print(b[1], target)
-        if b[1] > target:
-            a.get()
-            count += 1
-        if b[1] == target:
-            count +=1
-            break
-        else:
-            c = a.get()
-            a.put(c)
-            print("queue:",a.queue)
-            count +=1
-        print("count", count)
+from collections import deque
+# Test case number
+nOT = int(input())
+q = deque()
+ans = []
 
-    return count
+for _ in range (nOT):
+    # n = 문서의 갯수
+    # m = 몇 번째 관심
+    n, m = map(int, input().split())
+    priority = deque((map(int, input().split())))
+
+    print(priority)
+
+    order = 0
+    pSort = list(priority.copy())
+    pSort.sort()
+    pSort.reverse()
+
+    q.append(pSort)
+    print(q)
+
+    #제일 높은 우선 순위
+    maxP = pSort[0]
+
+    print(pSort)
+    if n == 1:
+        ans.append('1')
+
+    else:
+        for i in range (n, 0, -1):
+            # 제일 높은 우선 순위가 아니라면
+            if priority[i] != maxP:
+                # 맨 뒤에 배치
+                q.append(priority[i])
+            
+                
 
 
-#s3 - 프린터 큐
-from queue import PriorityQueue
-from sys import stdin
-n = int(input())
+    
 
-#문서의 개수, 몇 번째로 인쇄되었는지 궁금한 문서가 현재 Queue에서 몇 번째에 놓여 있는지 나타내는 정수
 
-for i in range (n):
-    a = PriorityQueue()
 
-    m, k = input().split()
-    m = int(m)
-    k = int(k)
+print(priority[-m])
 
-    print("\n----------------------------")
-    b = stdin.readline().split(' ')
 
-    for i in range (m):
-        a.put([int(b[i]), i])
-    print(a.queue)
+"""
+예제 입력 1 
+3
+1 0
+5
+4 2
+1 2 3 4
+6 0
+1 1 9 1 1 1
 
-    for i in range (m):
-        ans = pSort(a, k)
-        print(ans)
-
-print(a.queue)
+예제 출력 1 
+1
+2
+5
+"""
