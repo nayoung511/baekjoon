@@ -1,34 +1,13 @@
-zero = [0] * 91
-one = [0] * 91
-
-def zerodp(n):
-    if n == 1: return 0
-    if n == 2: return 1
-    if n == 3: return 1
-    if zero[n] != 0: return zero[n]
-    else:
-        zero[n] = zerodp(n-1) * 2
-    return zero[n]
-
-def onedp(n):
-    if n == 1: return 1
-    if n == 2: return 0
-    if n == 3: return 1
-    if one[n] != 0: return a[n]
-    else:
-        if onedp(n-1) == 1:
-            one[n] = 1
-        else: one[n] = onedp(n-1) + 1
-    return one[n]
-
-
 n = int(input())
 
-a = zerodp(n)
-b = onedp(n)
+num = [0] * 91
 
-print(a, b, a+b)
+num[1] = 1
+num[2] = 1
+for i in range (2, n+1):
+    num[i] = num[i-1] + num[i-2]
 
+print(num[n])
 
 
 """
