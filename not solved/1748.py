@@ -1,15 +1,13 @@
-n = int(input())
-length = len(str(n))
+n = input()
+num = list(map(int, n))
 
-dig = 0
+if len(n) == 1:
+    print(n)
 
-if n >= 10:
-    
-
-    for i in range (length, 0, -1):
-        val = pow(10, length-1)
-        n = n - val
-        dig += n * length + length
-
-
-print(dig)
+else:
+    #본인
+    sum = len(n) + 9
+    for i in range (len(n)):
+        sum += (num[i]) * len(n) * 10
+        
+print(sum)
