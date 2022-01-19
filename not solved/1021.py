@@ -5,51 +5,48 @@ n = int(n)
 m = int(m)
 
 val = list(map(int, input().split()))
+val = deque(val)
 
 q = deque(i for i in range (1, n+1))
 
-print(q)
-idx = 1
 count = 0
-i = 0
-rotate = 0
 
-while(count != m and rotate < 15):
-    a = q[0]   #most front element in the queue
-    print("front", a, "val", val[i])
-    if val[i] == a: #if a is same as target,
+
+
+for i in range (10):
+    left = q.popleft()
+    q.appendleft(left)
+
+    right = q.pop()
+    q.append(right)
+
+    first = val.popleft()
+    val.appendleft(first)
+
+    print("first", first, "left", left, "right", right)
+    print(q)
+    if first == left:
         q.popleft()
-        i = i + 1
-        count += 1
-<<<<<<< HEAD
-#음수 = 왼쪽 
-#양수 = 오른쪽 
-    else:
-        print(val[i] - a, len(q)-val[i])
-        if (abs(val[i] - a) < abs(len(q)-val[i])):
-            q.rotate(-abs(val[i]-a))
-            rotate += abs(val[i]-a)
-            
-        else:
-            q.rotate(len(q)-val[i] + 1)
-            rotate += len(q) - val[i] + 1
         
-    count += 0.2
-    print(q, rotate)
-print(rotate)
-=======
+        val.popleft()
+        
 
     else:
-        if (abs(val[i] - a) > abs(len(q) - val[i])):
-            q.rotate(-(abs(val[i]-a) + 1))
+        if first - left < right - first:
+            a = q.popleft()
+            q.append(a)
+            count+=1
             
         else:
-            q.rotate(len(q) - val[i] + 1)
+            a = q.pop()
+            q.appendleft(a)
+            count+=1
+
         
-        print(q)
+    print(q, "\n")
+
 
 print(count)
->>>>>>> 9f631d46f6ceda04bff2bcbf907145f1992fd23e
 
 
 """
