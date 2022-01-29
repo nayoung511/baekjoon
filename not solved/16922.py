@@ -1,9 +1,26 @@
 n = int(input())
+num = [1, 5, 10, 50]
+visited = [False] * (5)   # 0 == not yet, 1 == visited
+rs=[]
 
-num = set(1, 5, 10, 50)
-a = [0]
-b = set()
+def chess(m):
+    if m == 4:
+        print(rs)
+        return
+    for i in range (n+1):
+        #rs.append(num[i])
+        if visited[m-1] == False:
+            visited[m-1] = True
+            rs.append(num[m-1])
+            print(i, visited)
+            print(rs)
+            chess(m+1)
+            # visited[i] = False
+            # rs.pop()
 
-for i in range (n):
-    for j in range (len(num)):
-        if a[i] + num[i]
+chess(0)
+
+
+
+
+
