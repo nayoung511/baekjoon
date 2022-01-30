@@ -1,11 +1,12 @@
 n = int(input())
-x = [0] * (n+1)
-
+a = [0] * (n+1)
 def dp(n):
-    if n == 1: return 1
-    if n == 2: return 4
-    if n == 3: return 9
-    if x[n] != 0: return x[n]
-    else:
+    if n <= 3: return 1
+    if n == 4: return 2
+    if n == 9: return 3
+    
         
-
+    
+    n = n - dp(n) 
+    
+        
