@@ -15,7 +15,3 @@ for i in range (n):
             #num.pop
     else:
         num.put(inp)
-
-#num_set = set(num)
-
-#print(num_set)
