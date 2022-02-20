@@ -5,6 +5,7 @@ input = sys.stdin.readline
 m = int(input()) # 3,000,000
 
 # 공집합 선언
+# s=bin(0) --> 문자열이 된다
 s = 0
 for _ in range (m):
     ist = list(map(str, input().split()))
