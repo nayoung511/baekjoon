@@ -1,12 +1,11 @@
 n = int(input())
-a = [0] * (n+1)
-def dp(n):
-    if n <= 3: return 1
-    if n == 4: return 2
-    if n == 9: return 3
-    
-        
-    
-    n = n - dp(n) 
-    
-        
+num = [i for i in range (n+1)]
+
+for i in range (1, n+1):
+    for j in range (1, i):
+        if j * j > i:
+            break
+        if num[i] > num[i-j*j] + 1:
+            num[i] = num[i-j*j]+1
+
+print(num[n])
