@@ -20,10 +20,10 @@ for _ in range (t):
 
     for i in func:
         if i == 'R':
-            if evenR == False:
+            if evenR == False: #홀수로 뒤집었다면
                 start = len(num) - 1;
                 evenR = True
-            else:
+            else: # 짝수로 뒤집었다면
                 start = 0
                 evenR = False
         if i == 'D':
