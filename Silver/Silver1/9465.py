@@ -5,9 +5,11 @@ t = int(input())
 
 for _ in range (t):
     n = int(input())
-    sticker = [0, 0]
-    sticker[0] = list(map(int, input().split()))
-    sticker[1] = list(map(int, input().split()))
+    sticker = [[0]*100000, [0] *100000]
+    for idx, var in enumerate(map(int,input().split())): 
+        sticker[0][idx] = var 
+    for idx, var in enumerate(map(int,input().split())): 
+        sticker[1][idx] = var
 
     sticker[0][1] += sticker[1][0]
     sticker[1][1] += sticker[0][0]
