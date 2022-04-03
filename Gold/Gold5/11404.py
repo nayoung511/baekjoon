@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-INF = 1000000001
+INF = 100000001
 
 n = int(input()) # 도시의 개수
 m = int(input()) # 버스의 개수
