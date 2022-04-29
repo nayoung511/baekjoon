@@ -8,7 +8,7 @@ dp[1] = 2
 dp[2] = 3
 
 
-for i in range (3, 10):
+for i in range (3, 10001):
     dp[i] = dp[i-3] + ((i+1)//2) + 1
 
 for _ in range (n):
