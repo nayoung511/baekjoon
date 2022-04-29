@@ -7,22 +7,12 @@ dp[0] = 1
 dp[1] = 2
 dp[2] = 3
 
-def dpcal(n):
-    if n == 1:
-        return 1
 
-    if n == 2:
-        return 2
-
-    if n == 3:
-        return 3
-
-    else:
-
+for i in range (3, 10):
+    dp[i] = dp[i-3] + ((i+1)//2) + 1
 
 for _ in range (n):
-    dpcal(int(input()))
-    print(dp[n-1])
+    print(dp[int(input())-1])
 
 
 """
@@ -39,10 +29,15 @@ n = 5 --> 6
 3+2
 3+1+1
 
-n = 6 -->
+n = 6 --> 7
 1+1+1+1+1+1
 1+1+1+1+2
 1+1+2+2
+2+2+2
+1+1+1+3
+1+2+3
+3+3
+
 
 n = 7 --> 8
 
