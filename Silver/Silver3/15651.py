@@ -6,9 +6,9 @@ def dfs(cnt):
         print(*num)
         return
     
-    for i in range (n):
-        num.append(i+1)
-        dfs(i+1)
+    for i in range (cnt, n+1):
+        num.append(i)
+        dfs(i)
         num.pop()
 
 dfs(1)
