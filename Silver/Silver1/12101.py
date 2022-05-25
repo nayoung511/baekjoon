@@ -1,27 +1,29 @@
-import sys
-n, k = map(int, input().split())
+def solve(k):
+    global cnt
+    global num
+    global equation
+    #n 이 될 때까지 확인
+    if k == n:
+        equation.append(num)
 
-def equa(n, a, k):
-    equation = [['' for i in range(n)] for i in range (a)]
+        if cnt == m:
+            for i in range (len(num)-1):
+                print(num[i], "+", end='', sep='')
+            print(num[-1])
+        cnt+=1
 
-    for i in range (1, n+1):
-        for j in range (i):
-                equation[i][j] = j+
+    for i in range (1, 4):
+        if k + i <= n:
+            num.append(i)
+            solve(k+i)
+            num.pop()
 
-    print(equation)
+equation = []
+n, m = map(int, input().split())
+num = []
+cnt = 1
 
-dp = [0 for i in range (11)]
-dp[0] = 1
-dp[1] = 2
-dp[2] = 4
+solve(0)
 
-# 몇 개 있는지
-for i in range (3, n):
-    dp[i] = dp[i-3] + dp[i-2] + dp[i-1]
-
-if k > dp[n-1]:
+if m > len(equation):
     print(-1)
-else:
-    equa(n, dp[n-1], k)
-
-
