@@ -26,7 +26,7 @@ def solve(k):
                     password.append(alpha[i])
                     solve(k+1)
                     password.pop()
-            else:
+            else: # password가 비었을 때를 위해
                 password.append(alpha[i])
                 solve(k+1)
                 password.pop()
