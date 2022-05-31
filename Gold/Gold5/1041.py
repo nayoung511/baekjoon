@@ -2,7 +2,9 @@ n = int(input())
 # A, B, C, D, E, F
 num = list(map(int, input().split()))
 
+# 하나의 주사위만 주어졌을 때,
 if n == 1:
+    # 주사위 값을 다 더해 Max를 빼준다
     print(sum(num) - max(num))
 else:
     # 면 1, 2, 3개 
