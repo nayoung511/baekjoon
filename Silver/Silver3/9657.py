@@ -7,22 +7,15 @@
 """
 
 n = int(input())
-
-dp = [0 for i in range (n+1)]
-dp[1] = 1
-dp[2] = 0
-dp[3] = 1
-dp[4] = 1
-dp[5] = 1
-
-for i in range (6, n+1):
-    dp[i] = 0
-    if dp[i-1] == 0: dp[i] = 1
-    if dp[i-3] == 0: dp[i] = 1
-    if dp[i-4] == 0: dp[i] = 1
-
-if dp[n] == 1:
+total = [0, True,False,True,True] + [0]*(n-4)
+ 
+for _ in range(5,n+1):
+    if False in [total[_-1],total[_-3],total[_-4]]:
+        total[_]= True
+    else:
+        total[_]=False
+ 
+if total[n]:
     print("SK")
 else:
     print("CY")
-    
