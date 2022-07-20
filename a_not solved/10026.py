@@ -8,61 +8,99 @@ dy = [0, 0, 1, -1]
 n = int(input())
 
 color = [list(map(str, input().rstrip())) for _ in range (n)]
+
+colorBlindGraph = [[0 for i in range (n)]for j in range (n)]
+
+for i in range (n):
+    for j in range (n):
+        if color[i][j] == 'G':
+            colorBlindGraph[i][j] == 'B'
+        else:
+            colorBlindGraph[i][j] = color[i][j]
+
+
+
 visited = [[0 for i in range (n)]for j in range (n)]
+visitedColorblind = [[0 for i in range (n)]for j in range (n)]
 
-print(color)
-print(visited)
-countBlue = 0
-countRed = 0
-countGreen = 0
+countAreaNonColorblind = 0
+countAreaColorblind = 0
 
-def nonColorBlind(x, y):
-    global countRed
+# 색맹이 아닌 사람
+def nonColorBlind(x, y, v):
+    global countAreaNonColorblind
     q = deque([])
     q.append((x, y)) 
-    countRed += 1
-    print(countRed)
+
+    countAreaNonColorblind += 1
 
     while q:
-        print(q)
+        # print(q)
         ex, ey = q.popleft()
 
         for i in range (4):
             nx = ex + dx[i]
             ny = ey + dy[i]
 
-            if (0<= nx < n-1 and 0<= ny < n-1):
+            if (0<= nx < n and 0<= ny < n):
                 if (visited[nx][ny] == 0):
-                    # red
-                    if (color[nx][ny] == 'R'):
-                        visited[nx][ny] = countRed
+                    if (color[nx][ny] == v):
+                        visited[nx][ny] = 1
                         q.append((nx, ny))
-    
-    
-   
 
-                    #  red
+# 색맹인 사람
+# 빨강 초록을 하나로 묶어야 함
+def colorBlind(x, y, v):
+    global countAreaColorblind
+    q = deque([])
+    q.append((x, y)) 
+
+    countAreaColorblind += 1
+
+    while q:
+        # print(q)
+        ex, ey = q.popleft()
+
+        for i in range (4):
+            nx = ex + dx[i]
+            ny = ey + dy[i]
+
+            if (0<= nx < n and 0<= ny < n):
+                if (colorBlindGraph[nx][ny] == 0):
+                    if (color[nx][ny] == v):
+                        visitedColorblind[nx][ny] = 1
+                        q.append((nx, ny))
 
 
-                    # green
-        
-
+# 색맹이 아닌 사람
 for i in range (n):
     for j in range (n):
-        if color[i][j] == 'R':      
-            print("found!")
-            nonColorBlind(i, j)
-            
+        if color[i][j] == 'R' and visited[i][j] == 0:   
+            # 방문 처리
+            nonColorBlind(i, j, 'R')
 
-#nonColorBlind(0,0)
-countRed += 1
-print(countRed)
+        if color[i][j] == 'B' and visited[i][j] == 0:   
+            # 방문 처리
+            nonColorBlind(i, j, 'B')
 
-print(visited)
+        if color[i][j] == 'G' and visited[i][j] == 0:   
+            # 방문 처리
+            nonColorBlind(i, j, 'G')
 
-print(countRed)
+# 색맹인 사람
+for i in range (n):
+    for j in range (n):
+        if colorBlindGraph[i][j] == 'R' and visitedColorblind[i][j] == 0:   
+            # 방문 처리
+            colorBlind(i, j, 'R')
+
+        if colorBlindGraph[i][j] == 'B' and visitedColorblind[i][j] == 0:   
+            # 방문 처리
+            colorBlind(i, j, 'B')
+
+        if colorBlindGraph[i][j] == 'G' and visitedColorblind[i][j] == 0:   
+            # 방문 처리
+            colorBlind(i, j, 'G')
 
 
-# def ColorBlind():
-#     return count
-
+print(countAreaNonColorblind, countAreaColorblind)
