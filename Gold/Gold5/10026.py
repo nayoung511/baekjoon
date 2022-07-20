@@ -71,13 +71,6 @@ def colorBlind(x, y, v):
                             visitedColorblind[nx][ny] = 1
                             q.append((nx, ny))
 
-        for i in range (n):
-            for j in range (n):
-                print(visitedColorblind[i][j], end ='')
-            print()
-
-        print("---------", countAreaColorblind)
-
 # 색맹이 아닌 사람
 for i in range (n):
     for j in range (n):
