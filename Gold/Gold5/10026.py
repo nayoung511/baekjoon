@@ -8,18 +8,6 @@ dy = [0, 0, 1, -1]
 n = int(input())
 
 color = [list(map(str, input().rstrip())) for _ in range (n)]
-
-colorBlindGraph = [[0 for i in range (n)]for j in range (n)]
-
-for i in range (n):
-    for j in range (n):
-        if color[i][j] == 'G':
-            colorBlindGraph[i][j] == 'B'
-        else:
-            colorBlindGraph[i][j] = color[i][j]
-
-
-
 visited = [[0 for i in range (n)]for j in range (n)]
 visitedColorblind = [[0 for i in range (n)]for j in range (n)]
 
@@ -66,11 +54,29 @@ def colorBlind(x, y, v):
             ny = ey + dy[i]
 
             if (0<= nx < n and 0<= ny < n):
-                if (colorBlindGraph[nx][ny] == 0):
-                    if (color[nx][ny] == v):
-                        visitedColorblind[nx][ny] = 1
-                        q.append((nx, ny))
+                if (visitedColorblind[nx][ny] == 0):
+                    if v == 'R':
+                        # 빨간색이면 초록색까지 같이 체크
+                        if (color[nx][ny] == v) or (color[nx][ny] == 'G'):
+                            visitedColorblind[nx][ny] = 1
+                            q.append((nx, ny))
 
+                    elif v == 'G':
+                        if (color[nx][ny] == v) or (color[nx][ny] == 'R'):
+                            visitedColorblind[nx][ny] = 1
+                            q.append((nx, ny))
+
+                    else:
+                        if (color[nx][ny] == v):
+                            visitedColorblind[nx][ny] = 1
+                            q.append((nx, ny))
+
+        for i in range (n):
+            for j in range (n):
+                print(visitedColorblind[i][j], end ='')
+            print()
+
+        print("---------", countAreaColorblind)
 
 # 색맹이 아닌 사람
 for i in range (n):
@@ -90,15 +96,15 @@ for i in range (n):
 # 색맹인 사람
 for i in range (n):
     for j in range (n):
-        if colorBlindGraph[i][j] == 'R' and visitedColorblind[i][j] == 0:   
+        if color[i][j] == 'R' and visitedColorblind[i][j] == 0:   
             # 방문 처리
             colorBlind(i, j, 'R')
 
-        if colorBlindGraph[i][j] == 'B' and visitedColorblind[i][j] == 0:   
+        if color[i][j] == 'B' and visitedColorblind[i][j] == 0:   
             # 방문 처리
             colorBlind(i, j, 'B')
 
-        if colorBlindGraph[i][j] == 'G' and visitedColorblind[i][j] == 0:   
+        if color[i][j] == 'G' and visitedColorblind[i][j] == 0:   
             # 방문 처리
             colorBlind(i, j, 'G')
 
