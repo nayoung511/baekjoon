@@ -8,8 +8,12 @@ for i in range (n):
     graph.append(list(map(str, input())))
 
 check = deque([])
-visit = [[0 for i in range (n)] for _ in range (m)]
+visit = [[0 for i in range (m)] for _ in range (n)]
+alpha_visited = []
 maxx = 0
+
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
 
 def dfs(x, y):
     global maxx
@@ -19,7 +23,7 @@ def dfs(x, y):
 
     if len(check) > maxx:
         maxx = len(check)
-        print(check)
+    print(check)
 
     # 방문하지 않은 노드라면
     if visit[x][y] == 0:
@@ -29,11 +33,14 @@ def dfs(x, y):
             check.append(graph[x][y])
             # 방문처리
             visit[x][y] = 1
+            
             # 이웃 노드 방문
-            dfs(x+1, y)
-            dfs(x-1, y)
-            dfs(x, y-1)
-            dfs(x, y+1)
+            for i in range (4):
+                nx = x + dx[i]
+                ny = y + dy[i]
+
+                if 0<=nx<n and 0<=ny<m:
+                    dfs(nx, ny)
 
         else:
             if len(check) > 0:
